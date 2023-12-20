@@ -16,7 +16,8 @@
 
     <div @class(['p-4', 'text-white', 'font-bold', 'bg-red-600'=>!$task->completed, 'bg-green-600'=> $task->completed])>{{ $task->completed ? 'Completed' : 'Not Completed ' }}</div>
     <div class="flex items-start justify-center gap-2 my-4">
-      <a class="py-2 px-4 bg-slate-300 text-slate-900 shadow-lg ring-1 ring-slate-700 rounded-lg hover:bg-slate-50 hover:font-normal" href="{{ route('tasks.index') }}">Index</a>
+      <a class="py-2 px-4 bg-blue-300 text-blue-900 shadow-lg ring-1 ring-blue-700 rounded-lg hover:bg-blue-50 hover:font-normal" href="{{ route('tasks.create') }}">New</a>
+      <a class="py-2 px-4 bg-slate-300 text-slate-900 shadow-lg ring-1 ring-slate-700 rounded-lg hover:bg-slate-50 hover:font-normal" href="{{ route('tasks.index') }}">Cancel</a>
       <a class="py-2 px-4 bg-slate-300 text-slate-900 shadow-lg ring-1 ring-slate-700 rounded-lg hover:bg-slate-50 hover:font-normal" href="{{ route('tasks.edit', ['task' => $task->id]) }}">Edit</a>
 
         <form action="{{ route('tasks.toggle', ['task'=> $task->id]) }}" method="POST">
