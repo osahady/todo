@@ -5,18 +5,6 @@
 
     </x-slot>
 
-    <x-slot name="styles">
-        <style>
-            body {
-                background-color: #f5f5f5;
-            }
-            .error {
-                color: red;
-                font-size: 0.8rem;
-            }
-        </style>
-    </x-slot>
-
     @isset($task)
         <h1>Edit Task</h1>
     @else
@@ -32,29 +20,29 @@
         @endisset
 
         <div>
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" value="{{ $task->title ?? old('title') }}">
+            <label class="block text-slate-700 my-2" for="title">Title</label>
+            <input @class(['border  rounded p-2 w-full max-w-sm focus:outline-none', 'border-red-700' => $errors->has('title'), 'border-slate-700' => !$errors->has('title')]) type="text" name="title" id="title" value="{{ $task->title ?? old('title') }}" placeholder="title">
             @error('title')
-                <p class="error">{{ $message }}</p>
+                <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
 
         </div>
         <div>
-            <label for="description">Description</label>
-            <textarea name="description" id="description" cols="30" rows="5">{{ $task->description ?? old('description') }}</textarea>
+            <label class="block text-slate-700 my-2" for="description">Description</label>
+            <textarea @class(['border p-2 rounded w-full max-w-sm' ,'border-slate-700' => !$errors->has('description'), 'border-red-700' => $errors->has('description')]) name="description" id="description" cols="30" rows="5" placeholder="description">{{ $task->description ?? old('description') }}</textarea>
             @error('description')
-                <p class="error">{{ $message }}</p>
+                <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
         </div>
         <div>
-            <label for="long_description">long_description</label>
-            <textarea name="long_description" id="long_description" cols="30" rows="10">{{ $task->long_description ?? old('long_description') }}</textarea>
+            <label class="block text-slate-700 my-2 " for="long_description">Long Description</label>
+            <textarea @class(['border rounded p-2 w-full max-w-sm' ,'border-slate-700' => !$errors->has('long_description'), 'border-red-700' => $errors->has('long_description')]) name="long_description" id="long_description" cols="30" rows="7">{{ $task->long_description ?? old('long_description') }}</textarea>
             @error('long_description')
-                <p class="error">{{ $message }}</p>
+                <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
         </div>
-        <div>
-            <button type="submit">
+        <div class="mt-4">
+            <button class="py-2 px-4 bg-blue-700 text-white shadow-lg ring-1 ring-slate-700 rounded-lg hover:bg-blue-800 hover:font-normal" type="submit">
                 @isset($task)
                     Update
                 @else
